@@ -7,13 +7,7 @@ struct Tuple
 {
   Tuple(double x, double y, double z, double w);
 
-  bool operator==(const Tuple& rhs)
-  {
-    return equal(this->x, rhs.x)
-      && equal(this->y, rhs.y)
-      && equal(this->z, rhs.z)
-      && equal(this->w, rhs.w);
-  }
+
 
   bool isPoint();
   bool isVector();
@@ -30,4 +24,7 @@ struct Vector : public Tuple
 {
   Vector(double x, double y, double z);
 };
+
+bool operator==(const Tuple& lhs, const Tuple& rhs);
+Tuple operator+(const Tuple& lhs, const Tuple& rhs);
 #endif

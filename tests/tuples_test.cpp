@@ -38,3 +38,11 @@ TEST(Tuples, CreateVector)
   Vector v{4, -4, 3};
   ASSERT_TRUE(v == Tuple(4, -4, 3, 0));
 }
+
+// Adding two tuples
+TEST(Tuples, TupleAddition)
+{
+  Tuple a1{3, -2, 5, 1};
+  Tuple a2{-2, 3, 1, 0};
+  ASSERT_EQ(a1 + a2, Tuple(1,1,6,1));
+}
