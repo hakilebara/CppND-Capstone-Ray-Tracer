@@ -24,3 +24,17 @@ TEST(Tuples, IsVector)
   ASSERT_FALSE(a.isPoint());
   ASSERT_TRUE(a.isVector());
 }
+
+// point() creates tuples with w=1
+TEST(Tuples, CreatePoint)
+{
+  Point p{4, -4, 3};
+  ASSERT_TRUE(p == Tuple(4, -4, 3, 1));
+}
+
+// vector() creates tuples with w=0
+TEST(Tuples, CreateVector)
+{
+  Vector v{4, -4, 3};
+  ASSERT_TRUE(v == Tuple(4, -4, 3, 0));
+}
