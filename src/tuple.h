@@ -1,13 +1,11 @@
 #ifndef TUPLE_H
 #define TUPLE_H
 
-#include "utils.h"
-
 struct Tuple 
 {
   Tuple(double x, double y, double z, double w);
 
-
+  Tuple operator-();
 
   bool isPoint();
   bool isVector();
@@ -27,4 +25,7 @@ struct Vector : public Tuple
 
 bool operator==(const Tuple& lhs, const Tuple& rhs);
 Tuple operator+(const Tuple& lhs, const Tuple& rhs);
+Tuple operator-(const Tuple& lhs, const Tuple& rhs);
+Tuple operator*(const Tuple& lhs, const double rhs);
+Tuple operator/(const Tuple& lhs, const double rhs);
 #endif
