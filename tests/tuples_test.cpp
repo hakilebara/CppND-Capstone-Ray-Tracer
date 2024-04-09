@@ -142,3 +142,42 @@ TEST(Tuples, ComputingVectorMagnitude05)
   Vector v{-1, -2, -3};
   ASSERT_EQ(magnitude(v), std::sqrt(14));
 }
+
+// Normalizing vector vector(4, 0, 0) gives (1, 0, 0)
+TEST(Tuples, NormalizingVector01)
+{
+  Vector v{4, 0, 0};
+  ASSERT_EQ(normalize(v), Vector(1, 0, 0));
+}
+
+// Normalizing vector(1, 2, 3)
+TEST(Tuples, NormalizingVector02)
+{
+  Vector v{1, 2, 3};
+  ASSERT_EQ(normalize(v), Vector(1/std::sqrt(14), 2/std::sqrt(14), 3/std::sqrt(14)));
+}
+
+// The magnitude of a normalized vector
+TEST(Tuples, NormalizingVector03)
+{
+  Vector v{1, 2, 3};
+  Vector norm = normalize(v);
+  ASSERT_EQ(magnitude(norm), 1);
+}
+
+// The dot prodcut of two tuples
+TEST(Tuples, DotProduct)
+{
+  Vector a{1, 2, 3};
+  Vector b{2, 3, 4};
+  ASSERT_EQ(dot(a, b), 20);
+}
+
+// The cross product of two vectors
+TEST(Tuples, CrossProduct)
+{
+  Vector a{1, 2, 3};
+  Vector b{2, 3, 4};
+  ASSERT_EQ(cross(a, b), Vector(-1, 2, -1));
+  ASSERT_EQ(cross(b, a), Vector(1, -2, 1));
+}
