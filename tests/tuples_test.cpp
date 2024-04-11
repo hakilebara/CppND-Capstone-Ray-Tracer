@@ -186,9 +186,9 @@ TEST(Tuples, CrossProduct)
 TEST(Tuples, ColorTuple)
 {
   Color c{-0.5, 0.4, 1.7};
-  ASSERT_EQ(c.red(), -0.5);
-  ASSERT_EQ(c.green(), 0.4);
-  ASSERT_EQ(c.blue(), 1.7);
+  ASSERT_EQ(c.red, -0.5);
+  ASSERT_EQ(c.green, 0.4);
+  ASSERT_EQ(c.blue, 1.7);
 }
 
 // Adding colors

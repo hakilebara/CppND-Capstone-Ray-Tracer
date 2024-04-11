@@ -26,9 +26,7 @@ struct Vector : public Tuple
 struct Color : public Tuple
 {
   Color(double r, double g, double b);
-  double red() const { return this->x; }
-  double green() const { return this->y; }
-  double blue() const { return this->z; }
+  double red, green, blue;
 };
 
 bool operator==(const Tuple& lhs, const Tuple& rhs);
