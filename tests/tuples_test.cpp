@@ -181,3 +181,35 @@ TEST(Tuples, CrossProduct)
   ASSERT_EQ(cross(a, b), Vector(-1, 2, -1));
   ASSERT_EQ(cross(b, a), Vector(1, -2, 1));
 }
+
+// Colors are (red, green, blue) tuples
+TEST(Tuples, ColorTuple)
+{
+  Color c{-0.5, 0.4, 1.7};
+  ASSERT_EQ(c.red(), -0.5);
+  ASSERT_EQ(c.green(), 0.4);
+  ASSERT_EQ(c.blue(), 1.7);
+}
+
+// Adding colors
+TEST(Tuples, AddingColors)
+{
+  Color c1{0.9, 0.6, 0.75};
+  Color c2{0.7, 0.1, 0.25};
+  ASSERT_EQ(c1 + c2, Color(1.6, 0.7, 1.0));
+}
+
+// Substracting colors
+TEST(Tuples, SubstractingColors)
+{
+  Color c1{0.9, 0.6, 0.75};
+  Color c2{0.7, 0.1, 0.25};
+  ASSERT_EQ(c1 - c2, Color(0.2, 0.5, 0.5));
+}
+
+// Multiplying a color by a scalar
+TEST(Tuples, MultiplyingColorByScalar)
+{
+  Color c{0.2, 0.3, 0.4};
+  ASSERT_EQ(c * 2, Color(0.4, 0.6, 0.8));
+}

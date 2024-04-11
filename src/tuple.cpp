@@ -74,3 +74,14 @@ Tuple operator/(const Tuple& lhs, const double rhs)
 Point::Point(double x, double y, double z) : Tuple(x, y, z, 1.0) {}
 
 Vector::Vector(double x, double y, double z) : Tuple(x, y, z, 0.0) {}
+
+Color::Color(double red, double green, double blue) : Tuple(red, green, blue, 0.0) {}
+
+Color operator*(const Color& lhs, const Color& rhs)
+{
+  return Color(
+    lhs.red() * rhs.red(),
+    lhs.green() * rhs.green(),
+    lhs.blue() * rhs.blue()
+  );
+}

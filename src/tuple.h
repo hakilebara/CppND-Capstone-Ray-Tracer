@@ -23,9 +23,18 @@ struct Vector : public Tuple
   Vector(double x, double y, double z);
 };
 
+struct Color : public Tuple
+{
+  Color(double r, double g, double b);
+  double red() const { return this->x; }
+  double green() const { return this->y; }
+  double blue() const { return this->z; }
+};
+
 bool operator==(const Tuple& lhs, const Tuple& rhs);
 Tuple operator+(const Tuple& lhs, const Tuple& rhs);
 Tuple operator-(const Tuple& lhs, const Tuple& rhs);
 Tuple operator*(const Tuple& lhs, const double rhs);
 Tuple operator/(const Tuple& lhs, const double rhs);
+Color operator*(const Color& lhs, const Color& rhs);
 #endif
