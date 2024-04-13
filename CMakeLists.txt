@@ -6,9 +6,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 file(GLOB_RECURSE SRC "src/*.cpp")
 add_library(raytracer_src ${SRC})
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS, "-Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -Wall -Wextra -Wpedantic")
 
 include(FetchContent)
 FetchContent_Declare(
