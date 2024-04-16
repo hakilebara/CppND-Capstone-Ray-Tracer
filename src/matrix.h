@@ -25,4 +25,7 @@ private:
 
 Tuple operator*(const Matrix& lhs, const Tuple& rhs);
 
+Matrix transpose(const Matrix&);
+double determinant(const Matrix&);
+
 #endif

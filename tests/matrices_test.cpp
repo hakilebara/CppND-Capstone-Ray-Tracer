@@ -143,3 +143,37 @@ TEST(Matrices, IdentityMatrixTuple)
   Tuple a{1, 2, 3, 4};
   EXPECT_EQ(Matrix::identity_matrix*a, a);
 }
+
+// Transposing a matrix
+TEST(Matrices, TransposeMatrix)
+{
+  Matrix A{
+    {0, 9, 3, 0},
+    {9, 8, 0, 8},
+    {1, 8, 5, 3},
+    {0, 0, 5, 8}
+  };
+  Matrix transposed{
+    {0, 9, 1, 0},
+    {9, 8, 8, 0},
+    {3, 0, 5, 5},
+    {0, 8, 3, 8}
+  };
+  EXPECT_EQ(transpose(A), transposed);
+}
+
+// Transposing the identity matrix
+TEST(Matrices, TransposeIdentityMatrix)
+{
+  EXPECT_EQ(transpose(Matrix::identity_matrix), Matrix::identity_matrix);
+}
+
+// Calculating the determinant of a 2x2 matrix
+TEST(Matrices, Determinant2x2)
+{
+  Matrix A{
+    { 1, 5 },
+    {-3, 2 }
+  };
+  EXPECT_EQ(determinant(A), 17);
+}

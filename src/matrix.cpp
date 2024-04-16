@@ -99,3 +99,29 @@ const Matrix Matrix::identity_matrix {
   {0, 0, 1, 0},
   {0, 0, 0, 1}
 };
+
+Matrix transpose(const Matrix& matrix)
+{
+  Matrix M{
+    {0, 0, 0, 0},
+    {0, 0, 0, 0},
+    {0, 0, 0, 0},
+    {0, 0, 0, 0}
+  };
+
+  for (size_t i = 0; i < 4; i++) {
+    M[0][i] = matrix[i][0];
+    M[1][i] = matrix[i][1];
+    M[2][i] = matrix[i][2];
+    M[3][i] = matrix[i][3];
+  }
+  return M;
+}
+
+double determinant(const Matrix& matrix)
+{
+  // To find the determinanat of a 2x2 matrix
+  // determinant( [a, b],
+  //              [c, d] ) = a*d - b*c
+  return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+}
