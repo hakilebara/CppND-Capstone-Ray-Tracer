@@ -125,3 +125,14 @@ double determinant(const Matrix& matrix)
   //              [c, d] ) = a*d - b*c
   return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
 }
+
+Matrix submatrix(const Matrix& mat, int row, int column)
+{
+  Matrix temp = mat;
+  temp.data.erase(temp.data.begin() + row);
+  for (auto& row : temp.data)
+  {
+    row.erase(row.begin() + column);
+  }
+  return temp;
+}

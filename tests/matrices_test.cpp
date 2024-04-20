@@ -177,3 +177,38 @@ TEST(Matrices, Determinant2x2)
   };
   EXPECT_EQ(determinant(A), 17);
 }
+
+// A submatrix of a 3x3 matrix is a 2x2 matrix
+TEST(Matrices, Submatrix3x3)
+{
+  Matrix A{
+    {  1,  5,  0 },
+    { -3,  2,  7 },
+    {  0,  6, -3 }
+  };
+
+  Matrix B{
+    { -3, 2 },
+    {  0, 6 }
+  };
+  EXPECT_EQ(submatrix(A, 0, 2), B);
+}
+
+// A submatrix of a 4x4 matrix is a 3x3 matrix
+TEST(Matrices, Submatrix4x4)
+{
+  Matrix A{
+    { -6,  1,  1,  6},
+    { -8,  5,  8,  6},
+    { -1,  0,  8,  2},
+    { -7,  1, -1,  1}
+  };
+
+  Matrix B{
+    { -6,  1,  6},
+    { -8,  8,  6},
+    { -7, -1,  1}
+  };
+
+  EXPECT_EQ(submatrix(A, 2, 1), B);
+}
