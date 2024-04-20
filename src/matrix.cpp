@@ -120,10 +120,27 @@ Matrix transpose(const Matrix& matrix)
 
 double determinant(const Matrix& matrix)
 {
-  // To find the determinanat of a 2x2 matrix
-  // determinant( [a, b],
-  //              [c, d] ) = a*d - b*c
-  return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+  double det = 0;
+  if (matrix.data.size() == 2)
+  {
+    // To find the determinanat of a 2x2 matrix
+    // determinant( [a, b],
+    //              [c, d] ) = a*d - b*c
+    det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+  }
+  else
+  {
+    // To find the determinant of larger matrices,
+    // take any one of the rows or columns, then
+    // for each of the elements multiply the element
+    // by its cofactor and add the products together
+    for (size_t i = 0; i < matrix.data.size(); ++i)
+    {
+      det += matrix[0][i] * cofactor(matrix, 0, i);
+    }
+  }
+
+  return det;
 }
 
 Matrix submatrix(const Matrix& mat, int row, int column)
@@ -135,4 +152,16 @@ Matrix submatrix(const Matrix& mat, int row, int column)
     row.erase(row.begin() + column);
   }
   return temp;
+}
+
+double minor(const Matrix& matrix, int row, int column)
+{
+  return determinant(submatrix(matrix, row, column));
+}
+
+// if row + column is an odd number, negate the minor
+double cofactor(const Matrix& matrix, int row, int column)
+{
+  int sign = (row + column) % 2 ? -1 : 1;
+  return minor(matrix, row, column) * sign;
 }

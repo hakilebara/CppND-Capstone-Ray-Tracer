@@ -10,6 +10,7 @@ struct Matrix
   Matrix(std::initializer_list<std::initializer_list<double>>);  // Initializer list constructor
   friend Tuple operator*(const Matrix& lhs, const Tuple& rhs);
   friend Matrix submatrix(const Matrix&, int, int);
+  friend double determinant(const Matrix&);
 
   // Non-const subscript operator for mutable access
   std::vector<double>& operator[](size_t index);
@@ -29,5 +30,7 @@ Tuple operator*(const Matrix& lhs, const Tuple& rhs);
 Matrix transpose(const Matrix&);
 double determinant(const Matrix&);
 Matrix submatrix(const Matrix&, int row, int column);
+double minor(const Matrix&, int row, int column);
+double cofactor(const Matrix&, int row, int column);
 
 #endif

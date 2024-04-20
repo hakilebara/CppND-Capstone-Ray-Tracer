@@ -212,3 +212,62 @@ TEST(Matrices, Submatrix4x4)
 
   EXPECT_EQ(submatrix(A, 2, 1), B);
 }
+
+// Calculating a minor of a 3x3 matrix
+TEST(Matrices, Minor3x3)
+{
+  Matrix A{
+    { 3,  5,  0 },
+    { 2, -1, -7 },
+    { 6, -1,  5 }
+  };
+
+  Matrix B = submatrix(A, 1, 0);
+  EXPECT_EQ(determinant(B), 25);
+  EXPECT_EQ(minor(A, 1, 0), 25);
+}
+
+// Calculating a cofactor of a 3x3 matrix
+TEST(Matrices, Cofactor3x3)
+{
+  Matrix A{
+    { 3,  5,  0 },
+    { 2, -1, -7 },
+    { 6, -1,  5 }
+  };
+  EXPECT_EQ(minor(A, 0, 0), -12);
+  EXPECT_EQ(cofactor(A, 0, 0), -12);
+  EXPECT_EQ(minor(A, 1, 0), 25);
+  EXPECT_EQ(cofactor(A, 1, 0), -25);
+}
+
+// Calculating the determinant of a 3x3 matrix
+TEST(Matrices, Determinant3x3)
+{
+  Matrix A{
+    {  1,  2,  6 },
+    { -5,  8, -4 },
+    {  2,  6,  4 }
+  };
+  EXPECT_EQ(cofactor(A, 0, 0),  56);
+  EXPECT_EQ(cofactor(A, 0, 1),  12);
+  EXPECT_EQ(cofactor(A, 0, 2), -46);
+  EXPECT_EQ(determinant(A), -196);
+
+}
+
+// Calculating the determinant of a 4x4 matrix
+TEST(Matrices, Determinant4x4)
+{
+  Matrix A{
+    { -2, -8,  3,  5},
+    { -3,  1,  7,  3},
+    {  1,  2, -9,  6},
+    { -6,  7,  7, -9}
+  };
+  EXPECT_EQ(cofactor(A, 0, 0),  690);
+  EXPECT_EQ(cofactor(A, 0, 1),  447);
+  EXPECT_EQ(cofactor(A, 0, 2),  210);
+  EXPECT_EQ(cofactor(A, 0, 3),   51);
+  EXPECT_EQ(determinant(A), -4071);
+}
