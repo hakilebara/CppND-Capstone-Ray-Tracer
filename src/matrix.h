@@ -11,6 +11,7 @@ struct Matrix
   friend Tuple operator*(const Matrix& lhs, const Tuple& rhs);
   friend Matrix submatrix(const Matrix&, int, int);
   friend double determinant(const Matrix&);
+  friend Matrix inverse(const Matrix&);
 
   // Non-const subscript operator for mutable access
   std::vector<double>& operator[](size_t index);
@@ -32,5 +33,7 @@ double determinant(const Matrix&);
 Matrix submatrix(const Matrix&, int row, int column);
 double minor(const Matrix&, int row, int column);
 double cofactor(const Matrix&, int row, int column);
+bool is_invertible(const Matrix&);
+Matrix inverse(const Matrix&);
 
 #endif

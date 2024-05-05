@@ -165,3 +165,32 @@ double cofactor(const Matrix& matrix, int row, int column)
   int sign = (row + column) % 2 ? -1 : 1;
   return minor(matrix, row, column) * sign;
 }
+
+bool is_invertible(const Matrix& matrix)
+{
+  // A matrix is invertible if its determinant is not zero
+  return determinant(matrix) == 0 ? false : true;
+}
+
+Matrix inverse(const Matrix& matrix)
+{
+  if (!is_invertible(matrix))
+  {
+    throw std::invalid_argument("matrix is not invertible");
+  }
+
+  Matrix inv_matrix = matrix;
+  for (size_t row = 0; row < matrix.data.size(); ++row)
+  {
+    for (size_t col = 0; col < matrix[row].size(); ++col)
+    {
+      double c = cofactor(matrix, row, col);
+
+      // note that "col, row" here, instead of of "row, col",
+      // accomplishes the transpose operation
+      inv_matrix[col][row] = c / determinant(matrix);
+    }
+  }
+
+  return inv_matrix;
+}
