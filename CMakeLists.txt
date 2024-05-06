@@ -3,6 +3,8 @@ project(Raytracer VERSION 0.1 DESCRIPTION "A Ray Tracer Project")
 include_directories(${PROJECT_SOURCE_DIR}/src)
 # add_executable(raytracer src/main.cpp)
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 file(GLOB_RECURSE SRC "src/*.cpp")
 add_library(raytracer_src ${SRC})
 

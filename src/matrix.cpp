@@ -93,6 +93,27 @@ Tuple operator*(const Matrix& lhs, const Tuple& rhs)
   return t;
 }
 
+Point operator*(const Matrix& lhs, const Point& rhs)
+{
+  Point p{0, 0, 0};
+  p.x =     lhs.data[0][0] * rhs.x +
+            lhs.data[0][1] * rhs.y +
+            lhs.data[0][2] * rhs.z +
+            lhs.data[0][3];
+
+  p.y =     lhs.data[1][0] * rhs.x +
+            lhs.data[1][1] * rhs.y +
+            lhs.data[1][2] * rhs.z +
+            lhs.data[1][3];
+
+  p.z =     lhs.data[2][0] * rhs.x +
+            lhs.data[2][1] * rhs.y +
+            lhs.data[2][2] * rhs.z +
+            lhs.data[2][3];
+
+  return p;
+}
+
 const Matrix Matrix::identity_matrix {
   {1, 0, 0, 0},
   {0, 1, 0, 0},
