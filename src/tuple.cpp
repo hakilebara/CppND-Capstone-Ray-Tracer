@@ -85,3 +85,32 @@ Color operator*(const Color& lhs, const Color& rhs)
     lhs.blue * rhs.blue
   );
 }
+
+Point operator+(const Point& lhs, const Vector& rhs)
+{
+  return Point(
+    lhs.x + rhs.x,
+    lhs.y + rhs.y,
+    lhs.z + rhs.z
+  );
+}
+
+Vector operator*(const Vector& lhs, const double rhs)
+{
+  return Vector(
+    lhs.x * rhs,
+    lhs.y * rhs,
+    lhs.z * rhs
+  );
+}
+
+// the substraction of two points gives a vector
+// that represent hot to "get to" point A to point B
+Vector operator-(const Point& lhs, const Point& rhs)
+{
+  return Vector(
+    lhs.x - rhs.x,
+    lhs.y - rhs.y,
+    lhs.z - rhs.z
+  );
+}

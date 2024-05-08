@@ -10,6 +10,7 @@ struct Matrix
   Matrix(std::initializer_list<std::initializer_list<double>>);  // Initializer list constructor
   friend Tuple operator*(const Matrix& lhs, const Tuple& rhs);
   friend Point operator*(const Matrix& lhs, const Point& rhs);
+  friend Vector operator*(const Matrix& lhs, const Vector& rhs);
   friend Matrix submatrix(const Matrix&, int, int);
   friend double determinant(const Matrix&);
   friend Matrix inverse(const Matrix&);
@@ -28,6 +29,8 @@ private:
 };
 
 Tuple operator*(const Matrix& lhs, const Tuple& rhs);
+Point operator*(const Matrix& lhs, const Point& rhs);
+Vector operator*(const Matrix& lhs, const Vector& rhs);
 
 Matrix transpose(const Matrix&);
 double determinant(const Matrix&);

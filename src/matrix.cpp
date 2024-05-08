@@ -114,6 +114,32 @@ Point operator*(const Matrix& lhs, const Point& rhs)
   return p;
 }
 
+Vector operator*(const Matrix& lhs, const Vector& rhs)
+{
+  Vector v{0, 0, 0};
+  v.x =     lhs.data[0][0] * rhs.x +
+            lhs.data[0][1] * rhs.y +
+            lhs.data[0][2] * rhs.z +
+            lhs.data[0][3] * 0;
+
+  v.y =     lhs.data[1][0] * rhs.x +
+            lhs.data[1][1] * rhs.y +
+            lhs.data[1][2] * rhs.z +
+            lhs.data[1][3] * 0;
+
+  v.z =     lhs.data[2][0] * rhs.x +
+            lhs.data[2][1] * rhs.y +
+            lhs.data[2][2] * rhs.z +
+            lhs.data[2][3] * 0;
+
+  v.w =     lhs.data[3][0] * rhs.x +
+            lhs.data[3][1] * rhs.y +
+            lhs.data[3][2] * rhs.z +
+            lhs.data[3][3] * 0;
+
+  return v;
+}
+
 const Matrix Matrix::identity_matrix {
   {1, 0, 0, 0},
   {0, 1, 0, 0},

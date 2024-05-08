@@ -35,4 +35,7 @@ Tuple operator-(const Tuple& lhs, const Tuple& rhs);
 Tuple operator*(const Tuple& lhs, const double rhs);
 Tuple operator/(const Tuple& lhs, const double rhs);
 Color operator*(const Color& lhs, const Color& rhs);
+Point operator+(const Point& lhs, const Vector& rhs);
+Vector operator*(const Vector& lhs, const double rhs);
+Vector operator-(const Point& lhs, const Point& rhs);
 #endif
