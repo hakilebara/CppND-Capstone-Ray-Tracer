@@ -1,7 +1,6 @@
 #include <cmath>
 #include <algorithm>
 #include "ray.h"
-#include "maths.h"
 
 Ray::Ray(Point origin, Vector direction) : origin(origin), direction(direction) {}
 

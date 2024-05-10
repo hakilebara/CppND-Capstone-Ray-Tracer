@@ -77,6 +77,47 @@ Vector::Vector(double x, double y, double z) : Tuple(x, y, z, 0.0) {}
 
 Color::Color(double red, double green, double blue) : Tuple(red, green, blue, 0.0), red(red), green(green), blue(blue) {}
 
+double magnitude(const Vector& v)
+{
+  return std::sqrt(
+    std::pow(v.x, 2)
+    + std::pow(v.y, 2)
+    + std::pow(v.z, 2)
+    + std::pow(v.w, 2)
+  );
+}
+
+Vector normalize(const Vector& v)
+{
+  return Vector(
+      v.x / magnitude(v),
+      v.y / magnitude(v),
+      v.z / magnitude(v)
+  );
+}
+
+double dot(const Vector& a, const Vector&b)
+{
+  return a.x * b.x +
+         a.y * b.y +
+         a.z * b.z +
+         a.w * b.w;
+}
+
+Vector cross(const Vector& a, const Vector& b)
+{
+  return Vector(
+    a.y * b.z - a.z * b.y,
+    a.z * b.x - a.x * b.z,
+    a.x * b.y - a.y * b.x
+  );
+}
+
+Vector reflect(const Vector& in, const Vector& normal)
+{
+  return in - normal * 2 * dot(in, normal);
+}
+
 Color operator*(const Color& lhs, const Color& rhs)
 {
   return Color(
@@ -104,9 +145,21 @@ Vector operator*(const Vector& lhs, const double rhs)
   );
 }
 
-// the substraction of two points gives a vector
+// the subtraction of two points gives a vector
 // that represent hot to "get to" point A to point B
 Vector operator-(const Point& lhs, const Point& rhs)
+{
+  return Vector(
+    lhs.x - rhs.x,
+    lhs.y - rhs.y,
+    lhs.z - rhs.z
+  );
+}
+
+// The subtraction of two vectors results in a new vector
+// that represents the difference between their magnitudes
+// and directions
+Vector operator-(const Vector& lhs, const Vector& rhs)
 {
   return Vector(
     lhs.x - rhs.x,

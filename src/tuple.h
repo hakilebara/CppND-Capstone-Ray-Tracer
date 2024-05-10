@@ -1,6 +1,8 @@
 #ifndef TUPLE_H
 #define TUPLE_H
 
+#include <cmath>
+
 struct Tuple 
 {
   Tuple(double x, double y, double z, double w);
@@ -29,6 +31,12 @@ struct Color : public Tuple
   double red, green, blue;
 };
 
+double magnitude(const Vector&);
+Vector normalize(const Vector&);
+double dot(const Vector&, const Vector&);
+Vector cross(const Vector&, const Vector&);
+Vector reflect(const Vector&, const Vector&);
+
 bool operator==(const Tuple& lhs, const Tuple& rhs);
 Tuple operator+(const Tuple& lhs, const Tuple& rhs);
 Tuple operator-(const Tuple& lhs, const Tuple& rhs);
@@ -38,4 +46,5 @@ Color operator*(const Color& lhs, const Color& rhs);
 Point operator+(const Point& lhs, const Vector& rhs);
 Vector operator*(const Vector& lhs, const double rhs);
 Vector operator-(const Point& lhs, const Point& rhs);
+Vector operator-(const Vector& lhs, const Vector& rhs);
 #endif

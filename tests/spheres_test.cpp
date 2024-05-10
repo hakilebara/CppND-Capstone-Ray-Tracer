@@ -4,7 +4,6 @@
 #include "ray.h"
 #include "matrix.h"
 #include "transform.h"
-#include "maths.h"
 
 
 // A ray intersects a sphere at two points
@@ -165,4 +164,22 @@ TEST(Spheres, NormalOnTransformedSphere)
   set_transform(s, m);
   Vector n = normal_at(s, Point{0, std::sqrt(2)/2, -std::sqrt(2)/2});
   EXPECT_EQ(n, Vector(0, 0.97014, -0.24254));
+}
+
+// A sphere has a default material
+TEST(Spheres, SphereHasDefaultMaterial)
+{
+  Sphere s{};
+  Material m = s.material;
+  EXPECT_EQ(m, Material());
+}
+
+// A sphere may be assigned a material
+TEST(Spheres, AssignMaterialToSphere)
+{
+  Sphere s{};
+  Material m{};
+  m.ambient = 1;
+  s.material = m;
+  EXPECT_EQ(s.material, m);
 }

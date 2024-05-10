@@ -213,3 +213,21 @@ TEST(Tuples, MultiplyingColorByScalar)
   Color c{0.2, 0.3, 0.4};
   ASSERT_EQ(c * 2, Color(0.4, 0.6, 0.8));
 }
+
+// Reflecting a vector approaching at 45 degrees
+TEST(Tuples, ReflectingVector45deg)
+{
+  Vector v{ 1, -1, 0 };
+  Vector n{ 0,  1, 0 };
+  Vector r = reflect(v, n);
+  EXPECT_EQ(r, Vector(1, 1, 0));
+}
+
+// Reflecting a vector off a slanted surface
+TEST(Tuples, ReflectingVectorOffSlantedSurface)
+{
+  Vector v{0, -1, 0};
+  Vector n{std::sqrt(2)/2, std::sqrt(2)/2, 0};
+  Vector r = reflect(v, n);
+  EXPECT_EQ(r, Vector(1, 0, 0));
+}
