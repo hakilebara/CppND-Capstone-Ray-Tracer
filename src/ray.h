@@ -18,7 +18,7 @@ Point position(Ray ray, double t);
 
 struct Intersection
 {
-  Intersection(double t, Sphere object);
+  Intersection(double t, Sphere object) : t(t), object(object) {}
   double t;
   Sphere object;
   bool operator==(const Intersection& rhs) const
@@ -45,7 +45,7 @@ struct Intersections
   std::vector<Intersection> data;
 };
 
-Intersections intersect(Sphere, Ray);
+Intersections intersect(const Sphere&, const Ray&);
 
 std::optional<Intersection> hit(const Intersections&);
 

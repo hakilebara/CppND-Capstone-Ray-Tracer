@@ -7,3 +7,8 @@ Sphere::Sphere()
   std::uniform_int_distribution<int> dist;
   id = dist(rd);
 }
+
+void set_transforms(Sphere& sphere, const Matrix& transform)
+{
+  sphere.transform = transform; 
+}

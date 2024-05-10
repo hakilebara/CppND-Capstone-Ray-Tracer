@@ -10,13 +10,14 @@ Point position(Ray ray, double t)
   return ray.origin + ray.direction * t;
 }
 
-Intersections intersect(Sphere sphere, Ray ray)
+Intersections intersect(const Sphere& sphere, const Ray& ray)
 {
+  Ray ray2 = transform(ray, inverse(sphere.transform));
   // The vector from the sphere's center, to the ray origin
   // the sphere is centeredd at the world origin
-  Vector sphere_to_ray = ray.origin - Point{0, 0, 0};
-  double a = dot(ray.direction, ray.direction);
-  double b = 2 * dot(ray.direction, sphere_to_ray);
+  Vector sphere_to_ray = ray2.origin - Point{0, 0, 0};
+  double a = dot(ray2.direction, ray2.direction);
+  double b = 2 * dot(ray2.direction, sphere_to_ray);
   double c = dot(sphere_to_ray, sphere_to_ray) - 1;
 
   double discriminant = std::pow(b, 2) - 4 * a * c;
@@ -29,8 +30,6 @@ Intersections intersect(Sphere sphere, Ray ray)
   std::vector<Intersection> xs{ {t1, sphere}, {t2, sphere} };
   return Intersections{xs};
 }
-
-Intersection::Intersection(double t, Sphere object) : t(t), object(object) {}
 
 std::optional<Intersection> hit(const Intersections& xs)
 {
