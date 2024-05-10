@@ -8,7 +8,7 @@ Sphere::Sphere()
   id = dist(rd);
 }
 
-void set_transforms(Sphere& sphere, const Matrix& transform)
+void set_transform(Sphere& sphere, const Matrix& transform)
 {
   sphere.transform = transform; 
 }

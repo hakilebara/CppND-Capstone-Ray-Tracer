@@ -1,10 +1,8 @@
 #include <gtest/gtest.h>
-#include <numbers>
 #include "transform.h"
 #include "matrix.h"
 #include "tuple.h"
-
-constexpr double pi = std::numbers::pi;
+#include "maths.h"
 
 // Multiplying by a transalation matrix
 TEST(Transformations, MultiplyByTranslationMatrix)
