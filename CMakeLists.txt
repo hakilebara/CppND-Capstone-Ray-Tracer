@@ -8,7 +8,7 @@ file(GLOB_RECURSE SRC "src/*.cpp")
 add_library(raytracer_src ${SRC})
 add_executable(raytracer ${SRC})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -O3 -ffast-math -Wall -Wextra -Wpedantic")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -O3 -Wall -Wextra -Wpedantic")
 
 include(FetchContent)
 FetchContent_Declare(

@@ -40,6 +40,14 @@ Tuple operator+(const Tuple& lhs, const Tuple& rhs)
     lhs.w + rhs.w
   );
 }
+Color operator+(const Color& lhs, const Color& rhs)
+{
+  return Color(
+    lhs.x + rhs.x,
+    lhs.y + rhs.y,
+    lhs.z + rhs.z
+  );
+}
 
 Tuple operator-(const Tuple& lhs, const Tuple& rhs)
 {
@@ -61,6 +69,15 @@ Tuple operator*(const Tuple& lhs, const double rhs)
   );
 }
 
+Color operator*(const Color& lhs, const double rhs)
+{
+  return Color(
+    lhs.x * rhs,
+    lhs.y * rhs,
+    lhs.z * rhs
+  );
+}
+
 Tuple operator/(const Tuple& lhs, const double rhs)
 {
   return Tuple(
@@ -74,6 +91,15 @@ Tuple operator/(const Tuple& lhs, const double rhs)
 Point::Point(double x, double y, double z) : Tuple(x, y, z, 1.0) {}
 
 Vector::Vector(double x, double y, double z) : Tuple(x, y, z, 0.0) {}
+
+Vector Vector::operator-()
+{
+  return Vector(
+    - this->x,
+    - this->y,
+    - this->z
+  );
+}
 
 Color::Color(double red, double green, double blue) : Tuple(red, green, blue, 0.0), red(red), green(green), blue(blue) {}
 

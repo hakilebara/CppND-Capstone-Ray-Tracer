@@ -2,6 +2,7 @@
 #define LIGHT_H
 
 #include "tuple.h"
+#include "material.h"
 
 struct PointLight
 {
@@ -10,5 +11,7 @@ struct PointLight
   Point position;
   Color intensity;
 };
+
+Color lighting(const Material&, const PointLight&, const Point&, const Vector&, const Vector&);
 
 #endif

@@ -23,6 +23,7 @@ struct Point : public Tuple
 struct Vector : public Tuple
 {
   Vector(double x, double y, double z);
+  Vector operator-();
 };
 
 struct Color : public Tuple
@@ -39,8 +40,10 @@ Vector reflect(const Vector&, const Vector&);
 
 bool operator==(const Tuple& lhs, const Tuple& rhs);
 Tuple operator+(const Tuple& lhs, const Tuple& rhs);
+Color operator+(const Color& lhs, const Color& rhs);
 Tuple operator-(const Tuple& lhs, const Tuple& rhs);
 Tuple operator*(const Tuple& lhs, const double rhs);
+Color operator*(const Color& lhs, const double rhs);
 Tuple operator/(const Tuple& lhs, const double rhs);
 Color operator*(const Color& lhs, const Color& rhs);
 Point operator+(const Point& lhs, const Vector& rhs);
