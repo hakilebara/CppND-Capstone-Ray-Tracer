@@ -48,5 +48,3 @@ Color lighting(const Material& material, const PointLight& light, const Point& p
   // Add the three contributions together to get the final shading
   return ambient + diffuse + specular;
 }
-
-

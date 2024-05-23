@@ -3,6 +3,7 @@
 
 #include "tuple.h"
 #include "material.h"
+#include "light.h"
 
 struct PointLight
 {
@@ -10,6 +11,12 @@ struct PointLight
 
   Point position;
   Color intensity;
+
+  bool operator==(const PointLight& rhs) const
+  {
+    return position == rhs.position
+      && intensity == rhs.intensity;
+  }
 };
 
 Color lighting(const Material&, const PointLight&, const Point&, const Vector&, const Vector&);
