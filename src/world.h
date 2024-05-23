@@ -16,4 +16,6 @@ struct World
 World default_world();
 
 Intersections intersect_world(World, Ray);
+
+Color shade_hit(World, Computations);
 #endif

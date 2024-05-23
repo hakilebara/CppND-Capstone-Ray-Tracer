@@ -1,6 +1,7 @@
 #include <iterator>
 #include "world.h"
 #include "transform.h"
+#include "light.h"
 
 World default_world()
 {
@@ -35,4 +36,9 @@ Intersections intersect_world(World w, Ray r)
       return a.t < b.t;
   });
   return Intersections{world_xs};
+}
+
+Color shade_hit(World world, Computations comps)
+{
+  return lighting(comps.object.material, *world.light, comps.point, comps.eyev, comps.normalv);
 }

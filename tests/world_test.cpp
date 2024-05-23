@@ -42,3 +42,29 @@ TEST(World, IntersectWorldWithRay)
   EXPECT_EQ(xs[2].t, 5.5);
   EXPECT_EQ(xs[3].t, 6);
 }
+
+// Shading an intersection
+TEST(World, ShadingIntersection)
+{
+  World w = default_world();
+  Ray r{Point{0, 0, -5}, Vector{0, 0, 1}};
+  Sphere shape = w.objects[0];
+  Intersection i{4, shape};
+
+  Computations comps = prepare_computations(i, r);
+  Color c = shade_hit(w, comps);
+  EXPECT_EQ(c, Color(0.38066, 0.47583, 0.2855));
+}
+
+// Shading an intersection from the inside
+TEST(World, ShadingIntersectionFromTheInside)
+{
+  World w = default_world();
+  w.light = PointLight{Point{0, 0.25, 0}, Color{1, 1, 1}};
+  Ray r{Point{0,0,0}, Vector{0,0,1}};
+  Sphere shape = w.objects[1];
+  Intersection i{0.5, shape};
+  Computations comps = prepare_computations(i, r);
+  Color c = shade_hit(w, comps);
+  EXPECT_EQ(c, Color(0.90498, 0.90498, 0.90498));
+}
