@@ -40,3 +40,31 @@ Ray transform(const Ray& ray, const Matrix& transform)
 {
   return Ray{{transform * ray.origin}, {transform * ray.direction}};
 }
+
+Computations prepare_computations(const Intersection& intersection, const Ray& ray)
+{
+  // instantiate a data structure for storing some precomputed values
+  Point point = position(ray, intersection.t);
+  Computations comps{intersection.t, intersection.object, point, -ray.direction, normal_at(intersection.object, point)};
+
+  // copy the intersection's properties, for convenience
+  comps.t = intersection.t;
+  comps.object = intersection.object;
+
+  // precompute some useful values
+  comps.point = position(ray, comps.t);
+  comps.eyev = -ray.direction;
+  comps.normalv = normal_at(comps.object, comps.point);
+
+  if (dot(comps.normalv, comps.eyev) < 0)
+  {
+    comps.inside = true;
+    comps.normalv = -comps.normalv;
+  }
+  else
+  {
+    comps.inside = false;
+  }
+
+  return comps;
+}

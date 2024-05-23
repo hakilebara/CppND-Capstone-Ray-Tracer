@@ -43,6 +43,26 @@ struct Intersections
   std::vector<Intersection> data;
 };
 
+struct Computations
+{
+  Computations(double t, Sphere object, Point point, Vector eyev, Vector normalv) :
+    t(t),
+    object(object),
+    point(point),
+    eyev(eyev),
+    normalv(normalv) {}
+
+  Computations();
+  double t;
+  Sphere object;
+  Point point;
+  Vector eyev;
+  Vector normalv;
+  bool inside;
+};
+
+Computations prepare_computations(const Intersection&, const Ray&);
+
 Intersections intersect(const Sphere&, const Ray&);
 
 std::optional<Intersection> hit(const Intersections&);

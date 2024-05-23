@@ -68,3 +68,41 @@ TEST(Intersections, AlwaysLowestNonNegT)
   std::optional<Intersection> i = hit(xs);
   EXPECT_EQ(i, i4);
 }
+
+// Precomputing the state of an intersection
+TEST(Intersections, PrecomputingIntersectionState)
+{
+  Ray r{Point{0, 0, -5}, Vector{0, 0, 1}};
+  Sphere shape{};
+  Intersection i{4, shape};
+  Computations comps = prepare_computations(i, r);
+  EXPECT_EQ(comps.t, i.t);
+  EXPECT_EQ(comps.object, i.object);
+  EXPECT_EQ(comps.point, Point(0, 0, -1));
+  EXPECT_EQ(comps.eyev, Vector(0, 0, -1));
+  EXPECT_EQ(comps.normalv, Vector(0, 0, -1));
+}
+
+// The hit, when an intersection occurs on the outside
+TEST(Intersections, HitIntersectionOnTheOutside)
+{
+  Ray r{Point{0, 0, -5}, Vector{0, 0, 1}};
+  Sphere shape{};
+  Intersection i{4, shape};
+  Computations comps = prepare_computations(i, r);
+  EXPECT_FALSE(comps.inside);
+}
+
+// The hit, when an intersection occurs on the inside
+TEST(Intersections, HitIntersectionOnTheInside)
+{
+  Ray r{Point{0, 0, 0}, Vector{0, 0, 1}};
+  Sphere shape{};
+  Intersection i{1, shape};
+  Computations comps = prepare_computations(i, r);
+  EXPECT_EQ(comps.point, Point(0, 0, 1));
+  EXPECT_EQ(comps.eyev, Vector(0, 0, -1));
+  EXPECT_TRUE(comps.inside);
+  // normal would have been (0, 0, 1), but is inverted
+  EXPECT_EQ(comps.normalv, Vector(0, 0, -1));
+}
