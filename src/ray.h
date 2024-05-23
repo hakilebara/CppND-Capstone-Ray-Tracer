@@ -35,13 +35,11 @@ struct Intersections
         return a.t < b.t;
     });
   }
-  friend std::optional<Intersection> hit(const Intersections&);
   Intersection operator[](size_t index) { return data[index]; }
   Intersection operator[](size_t index) const { return data[index]; }
 
   unsigned int count() const { return data.size(); }
 
-  private:
   std::vector<Intersection> data;
 };
 
