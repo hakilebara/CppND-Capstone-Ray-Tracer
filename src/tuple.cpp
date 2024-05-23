@@ -92,7 +92,7 @@ Point::Point(double x, double y, double z) : Tuple(x, y, z, 1.0) {}
 
 Vector::Vector(double x, double y, double z) : Tuple(x, y, z, 0.0) {}
 
-Vector Vector::operator-()
+Vector Vector::operator-() const
 {
   return Vector(
     - this->x,

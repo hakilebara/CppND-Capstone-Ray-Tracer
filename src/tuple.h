@@ -23,7 +23,7 @@ struct Point : public Tuple
 struct Vector : public Tuple
 {
   Vector(double x, double y, double z);
-  Vector operator-();
+  Vector operator-() const;
 };
 
 struct Color : public Tuple
