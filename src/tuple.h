@@ -28,6 +28,7 @@ struct Vector : public Tuple
 
 struct Color : public Tuple
 {
+  Color();
   Color(double r, double g, double b);
   double red, green, blue;
 };

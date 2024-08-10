@@ -101,6 +101,7 @@ Vector Vector::operator-() const
   );
 }
 
+Color::Color() : Tuple(0, 0, 0, 0.0), red(0), green(0), blue(0) {};
 Color::Color(double red, double green, double blue) : Tuple(red, green, blue, 0.0), red(red), green(green), blue(blue) {}
 
 double magnitude(const Vector& v)

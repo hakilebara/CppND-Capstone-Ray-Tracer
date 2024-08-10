@@ -2,6 +2,7 @@
 
 Color lighting(const Material& material, const PointLight& light, const Point& point, const Vector& eyev, const Vector& normalv)
 {
+  Color diffuse, specular;
   // combine the surface color with the light's color/intensity
   Color effective_color = material.color * light.intensity;
 
@@ -14,14 +15,11 @@ Color lighting(const Material& material, const PointLight& light, const Point& p
   // light_dot_normal represents the cosine of the angle between the
   // light vector and the normal vector. A negative number means the
   // light is on the other side of the surface
-  Color diffuse{0, 0, 0};
-  Color specular{0, 0, 0};
-  Color black{0, 0, 0};
   double light_dot_normal = dot(lightv, normalv);
   if (light_dot_normal < 0)
   {
-    diffuse = black;
-    specular = black;
+    diffuse = Color{0,0,0};
+    specular = Color{0,0,0};
   }
   else
   {
@@ -35,7 +33,7 @@ Color lighting(const Material& material, const PointLight& light, const Point& p
     double reflect_dot_eye = dot(reflectv, eyev);
     if (reflect_dot_eye <= 0)
     {
-      specular = black;
+      specular = Color{0,0,0};
     }
     else
     {
