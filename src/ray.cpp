@@ -43,28 +43,24 @@ Ray transform(const Ray& ray, const Matrix& transform)
 
 Computations prepare_computations(const Intersection& intersection, const Ray& ray)
 {
-  // instantiate a data structure for storing some precomputed values
-  Point point = position(ray, intersection.t);
-  Computations comps{intersection.t, intersection.object, point, -ray.direction, normal_at(intersection.object, point)};
-
   // copy the intersection's properties, for convenience
-  comps.t = intersection.t;
-  comps.object = intersection.object;
+  Point point = position(ray, intersection.t);
+  double t = intersection.t;
+  Sphere object = intersection.object;
+  bool inside = false;
 
   // precompute some useful values
-  comps.point = position(ray, comps.t);
-  comps.eyev = -ray.direction;
-  comps.normalv = normal_at(comps.object, comps.point);
+  Vector eyev = -ray.direction;
+  Vector normalv = normal_at(object, point);
 
-  if (dot(comps.normalv, comps.eyev) < 0)
+  if (dot(normalv, eyev) < 0)
   {
-    comps.inside = true;
-    comps.normalv = -comps.normalv;
+    inside = true;
+    normalv = -normalv;
   }
-  else
-  {
-    comps.inside = false;
-  }
+
+  // instantiate a data structure for storing some precomputed values
+  Computations comps{t, object, point, eyev, normalv, inside};
 
   return comps;
 }

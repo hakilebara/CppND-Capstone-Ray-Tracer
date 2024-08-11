@@ -45,12 +45,13 @@ struct Intersections
 
 struct Computations
 {
-  Computations(double t, Sphere object, Point point, Vector eyev, Vector normalv) :
+  Computations(double t, Sphere object, Point point, Vector eyev, Vector normalv, bool inside) :
     t(t),
     object(object),
     point(point),
     eyev(eyev),
-    normalv(normalv) {}
+    normalv(normalv),
+    inside(inside) {}
 
   Computations();
   double t;
