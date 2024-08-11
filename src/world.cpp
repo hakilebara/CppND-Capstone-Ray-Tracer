@@ -42,3 +42,12 @@ Color shade_hit(World world, Computations comps)
 {
   return lighting(comps.object.material, *world.light, comps.point, comps.eyev, comps.normalv);
 }
+
+Color color_at(World& world, Ray& ray)
+{
+  Intersections xs = intersect_world(world, ray);
+  std::optional<Intersection> intersection = hit(xs);
+  if(!intersection) return Color{0,0,0};
+  Computations comps = prepare_computations(*intersection, ray);
+  return shade_hit(world, comps);
+}

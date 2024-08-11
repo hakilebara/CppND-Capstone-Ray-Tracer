@@ -18,4 +18,5 @@ World default_world();
 Intersections intersect_world(World, Ray);
 
 Color shade_hit(World, Computations);
+Color color_at(World&, Ray&);
 #endif
