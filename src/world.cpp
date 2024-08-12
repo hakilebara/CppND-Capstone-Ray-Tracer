@@ -23,7 +23,7 @@ World default_world()
   return w;
 }
 
-Intersections intersect_world(World w, Ray r)
+Intersections intersect_world(World& w, Ray& r)
 {
   std::vector<Intersection> world_xs;
   for(auto object : w.objects)
@@ -38,7 +38,7 @@ Intersections intersect_world(World w, Ray r)
   return Intersections{world_xs};
 }
 
-Color shade_hit(World world, Computations comps)
+Color shade_hit(World& world, Computations& comps)
 {
   return lighting(comps.object.material, *world.light, comps.point, comps.eyev, comps.normalv);
 }
