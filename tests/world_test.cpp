@@ -102,23 +102,5 @@ TEST(World, ColorWithIntersectionBehindRay)
 
   Ray r{Point{0, 0, 0.75}, Vector{0, 0, -1}};
   Color c = color_at(w, r);
-  Intersections xs = intersect_world(w, r);
-  std::cout << "intersection count: " << xs.count() << std::endl;
-
-  for (auto i : xs.data)
-  {
-    Computations comps = prepare_computations(i, r);
-    Color c = shade_hit(w, comps);
-    std::cout << std::format("intersection: {}, inside: {}, Color: ({}, {}, {})", i.t, comps.inside, c.red, c.green, c.blue) << std::endl;
-  }
-
-  std::cout << std::format(
-      "inner.material.color - red: {}, green: {}, blue: {}",
-      inner.material.color.red,
-      inner.material.color.green,
-      inner.material.color.blue
-      ) << std::endl;
-
-  std::cout << std::format("c - red: {}, green: {}, bleu: {}", c.red, c.green, c.blue) << std::endl;
   EXPECT_EQ(c, inner.material.color);
 }
