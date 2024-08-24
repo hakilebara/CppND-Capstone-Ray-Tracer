@@ -62,3 +62,29 @@ Matrix shearing(double xy, double xz, double yx, double yz, double zx, double zy
     {  0,  0, 0, 1 }
   };
 }
+
+Matrix view_transform(const Point& from, const Point& to, const Vector& up)
+{
+  Vector forward = normalize(to - from);
+  Vector upn = normalize(up);
+  Vector left = cross(forward, upn);
+
+  // Compute the true_up vector by taking the cross product of 'left' and
+  // 'forward', this allows the originial 'up' vector to be only approximately
+  // up, which makes framing scenes a lot easier, since there is not need to
+  // personally break out a calculator to figure out the precise upward direction
+  Vector true_up = cross(left, forward);
+
+  // with the 'left', 'true_up', and 'forward' vectors, construct a matrix that
+  // represents the orientation transformation
+  Matrix orientation = Matrix{
+    {  left.x,     left.y,     left.z,    0 },
+    {  true_up.x,  true_up.y,  true_up.z, 0 },
+    { -forward.x, -forward.y, -forward.z, 0 },
+    {  0,          0,          0,         1 },
+  };
+
+  // append a translation to that transformation to move the scene into place
+  // before orienting it.
+  return orientation * translation(-from.x, -from.y, -from.z);
+}

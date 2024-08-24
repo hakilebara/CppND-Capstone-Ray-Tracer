@@ -167,3 +167,56 @@ TEST(Transformations, ReverseTransformationSequence)
   Matrix T = C * B * A;
   EXPECT_EQ(T * p, Point(15, 0, 7));
 }
+
+// The transformation matrix for the default orientation
+TEST(Transformations, TransformationMatrixForDefaultOrientation)
+{
+  Point  from{0, 0, 0};
+  Point  to{0, 0, -1};
+  Vector up{0, 1, 0};
+
+  Matrix t = view_transform(from, to, up);
+  EXPECT_EQ(t, Matrix::identity_matrix);
+}
+
+// A view transformation matrix looking in positive z direction
+TEST(Transformations, AViewTransformationMatrixLookingInPositiveZDirection)
+{
+  Point  from{0, 0, 0};
+  Point  to{0, 0, 1};
+  Vector up{0, 1, 0};
+
+  Matrix t = view_transform(from, to, up);
+  EXPECT_EQ(t, scaling(-1, 1, -1));
+}
+
+// The view transformation moves the world
+TEST(Transformations, TheViewTransformationMovesTheWorld)
+{
+  Point from{0, 0, 8};
+  Point to{0, 0, 0};
+  Vector up{0, 1, 0};
+
+  // the resulting translation moves everything backward 8 units
+  // along the z axis, effectively pushing the world away from an
+  // eye positioned at the origin.
+  Matrix t = view_transform(from, to, up);
+  EXPECT_EQ(t, translation(0, 0, -8));
+}
+
+// An arbitrary view transformation
+TEST(Transformations, AnArbitraryViewTransformation)
+{
+  Point from{1, 3, 2};
+  Point to{4, -2, 8};
+  Vector up{1, 1, 0};
+
+  Matrix t = view_transform(from, to, up);
+  Matrix A{
+    { -0.50709, 0.50709,  0.67612, -2.36643 },
+    {  0.76772, 0.60609,  0.12122, -2.82843 },
+    { -0.35857, 0.59761, -0.71714,  0.00000 },
+    {  0.00000, 0.00000,  0.00000,  1.00000 }
+  };
+  EXPECT_EQ(t, A);
+}
